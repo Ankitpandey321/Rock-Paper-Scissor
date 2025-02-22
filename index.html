@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffcccb, #ffebcd);
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #ff5733;
+            color: white;
+            width: 100%;
+            padding: 1rem 0;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .choices {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .choice {
+            height: 120px;
+            width: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #f0f0f0, #cacaca);
+            box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .choice:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(255, 69, 0, 0.6);
+        }
+
+        .choice:active {
+            transform: scale(0.95);
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 3rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .score {
+            text-align: center;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            background: linear-gradient(145deg, #ffffff, #d4d4d4);
+            box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .score:hover {
+            transform: scale(1.1);
+        }
+
+        #user-score, #comp-score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff4500;
+            text-shadow: 0px 0px 10px rgba(255, 69, 0, 0.8);
+        }
+
+        .score p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .msg-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        #msg {
+            background: black;
+            color: white;
+            font-size: 1.5rem;
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.6);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .win {
+            background: #28a745 !important;
+            box-shadow: 0px 6px 15px rgba(40, 167, 69, 0.8);
+        }
+
+        .lose {
+            background: #dc3545 !important;
+            box-shadow: 0px 6px 15px rgba(220, 53, 69, 0.8);
+        }
+
+        .tie {
+            background: #007bff !important;
+            box-shadow: 0px 6px 15px rgba(0, 123, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <div class="choices">
+        <div class="choice" id="rock">
+            <img src="rock.png" alt="Rock">
+        </div>
+        <div class="choice" id="scissor">
+            <img src="scissors.png" alt="Scissors">
+        </div>
+        <div class="choice" id="paper">
+            <img src="paper.png" alt="Paper">
+        </div>
+    </div>
+
+    <div class="score-board">
+        <div class="score">
+            <p id="user-score">0</p>
+            <p>You</p>
+        </div>
+        <div class="score">
+            <p id="comp-score">0</p>
+            <p>Comp</p>
+        </div>
+    </div>
+    <div class="msg-container">
+        <p id="msg">Play Your Move</p>
+    </div>
+
+    <script>
+        let userScore = 0;
+        let compScore = 0;
+        const choices = document.querySelectorAll(".choice");
+        const msg = document.querySelector("#msg");
+        const userScorePara = document.querySelector("#user-score");
+        const compScorePara = document.querySelector("#comp-score");
+
+        const genCompChoice = () => {
+            const options = ["rock", "paper", "scissor"];
+            return options[Math.floor(Math.random() * 3)];
+        };
+
+        const drawGame = () => {
+            msg.innerText = "It's a tie! Play again.";
+            msg.className = "tie";
+        };
+
+        const showWinner = (userWin, userChoice, compChoice) => {
+            if (userWin) {
+                userScore++;
+                userScorePara.innerText = userScore;
+                msg.innerText = `You win! Your ${userChoice} beats ${compChoice}`;
+                msg.className = "win";
+            } else {
+                compScore++;
+                compScorePara.innerText = compScore;
+                msg.innerText = `You lost! ${compChoice} beats your ${userChoice}`;
+                msg.className = "lose";
+            }
+        };
+
+        choices.forEach(choice => {
+            choice.addEventListener("click", () => playGame(choice.id));
+        });
+
+        const playGame = (userChoice) => {
+            const compChoice = genCompChoice();
+            if (userChoice === compChoice) drawGame();
+            else showWinner(userChoice !== "rock" === (compChoice === "scissor"), userChoice, compChoice);
+        };
+    </script>
+</body>
+</html>

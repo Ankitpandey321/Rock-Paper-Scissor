@@ -1,0 +1,242 @@
+/* * {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    background-color: beige;
+    color: brown;
+    height: 6rem;
+    line-height: 5rem;
+    text-align: center;
+    justify-content: center;
+
+}
+
+.choice{
+    height: 168px;
+    width: 168px;
+  
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.choice:hover{
+    opacity: 0.4  ;
+    cursor: pointer;
+    
+    
+}
+img {
+    height: 140px;
+    width: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.choices{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 5rem;
+}
+.score-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin-top: 5rem;
+    gap: 8rem;
+}
+#user-score,#comp-score {
+    font-size: 4rem;
+}
+
+.msg-container{
+    margin-top: 5rem;
+    justify-content: center;
+    text-align: center;
+}
+
+#msg{
+    background-color: black;
+    color: aliceblue;
+    font-size: 2rem;
+    display: inline;
+    padding: 1rem;
+    border-radius: 1rem ;
+    
+} */
+
+/* Reset default styles */
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body Styling */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffcccb, #ffebcd);
+}
+
+/* Header Styling */
+h1 {
+    background-color: #ff5733;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 2rem;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+}
+
+/* Choices Section */
+.choices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.choice {
+    height: 120px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.choice:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(255, 69, 0, 0.6);
+}
+
+.choice:active {
+    transform: scale(0.95);
+    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Scoreboard */
+.score-board {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 3rem;
+    padding: 1rem;
+    
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Scorebox */
+.score {
+    text-align: center;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    background: linear-gradient(145deg, #ffffff, #d4d4d4);
+    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.score:hover {
+    transform: scale(1.1);
+}
+
+/* Score Numbers */
+#user-score, #comp-score {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff4500;
+    text-shadow: 0px 0px 10px rgba(255, 69, 0, 0.8);
+}
+
+/* Labels */
+.score p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Message Box */
+.msg-container {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+#msg {
+    background: black;
+    color: white;
+    font-size: 1.5rem;
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.6);
+    transition: all 0.2s ease-in-out;
+    border: none;
+    outline: none;
+}
+
+/* Win Message */
+.win {
+    background: #28a745 !important;  /* Green */
+    box-shadow: 0px 6px 15px rgba(40, 167, 69, 0.8);
+}
+
+/* Lose Message */
+.lose {
+    background: #dc3545 !important; /* Red */
+    box-shadow: 0px 6px 15px rgba(220, 53, 69, 0.8);
+}
+
+/* Tie Message */
+.tie {
+    background: #007bff !important; /* Blue */
+    box-shadow: 0px 6px 15px rgba(0, 123, 255, 0.8);
+}
+
+
+
