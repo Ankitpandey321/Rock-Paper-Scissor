@@ -1,12 +1,12 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/Ankitpandey321/Rock-Paper-Scissor.git'
-            }
-        }
+       stage('Clone Repo') {
+           steps {
+            git 'https://github.com/Ankitpandey321/Rock-Paper-Scissor.git'
+          }
+       }
+
 
         stage('Build Docker Image') {
             steps {
