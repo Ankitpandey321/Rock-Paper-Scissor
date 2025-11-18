@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/Ankitpandey321/Rock-Paper-Scissor.git'
+                git branch: 'main', url: 'https://github.com/Ankitpandey321/Rock-Paper-Scissor.git'
             }
         }
 
